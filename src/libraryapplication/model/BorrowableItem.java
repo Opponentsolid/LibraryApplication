@@ -2,7 +2,7 @@
 package libraryapplication.model;
 
 public class BorrowableItem {
-    private static int id;
+    private int id;
     private float cost;
     private boolean issued;
     private String location;
@@ -36,7 +36,7 @@ public class BorrowableItem {
     public void setID(int id) {
         this.id = id;
     }
-    public static int getID() {
+    public int getID() {
         return id;
     }
     //Set and Get Is Issued
@@ -66,28 +66,5 @@ public class BorrowableItem {
     }
     public String getType() {
         return type;
-    }
-
-    //Used to display object details depending on the object type should output required information only
-    public void displayObjectDetails(String duration, String format, String author, int numPages, String publisher, int issueNo, String subject) {
-        System.out.println("Cost: " + cost);
-        System.out.println("ID: " + id);
-        System.out.println("Issued: " + issued);
-        System.out.println("Location: " + location);
-        System.out.println("Title: " + title);
-        System.out.println("Type: " + type);
-        if (type.equals("Book")){
-            System.out.println("Author: " + author);
-            System.out.println("NumPages: " + numPages);
-            System.out.println("Publisher: " + publisher);
-        } else if (type.equals("Journal")) {
-            System.out.println("IssueNo: " + issueNo);
-            System.out.println("NumPages: " + numPages);
-            System.out.println("Publisher: " + publisher);
-            System.out.println("Subject: " + subject);
-        } else {
-            System.out.println("Duration: " + duration);
-            System.out.println("Format: " + format);
-        }
     }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 //import local java files
+import com.sun.tools.javac.Main;
 import libraryapplication.view.*;
 import libraryapplication.model.*;
 
@@ -14,17 +15,18 @@ import static libraryapplication.view.SummaryDataView.*;
 public class LibraryApplication {
 
     //Declare private variables
-    private Header header;
-    private MainMenuView mainMenu;
-    private AVItemInputDialogue avInput;
-    private BookInputDialogue bookInput;
-    private JournalInputDialogue journalInput;
-    private AVItemView avItemView;
-    private BookView bookView;
-    private JournalView journalView;
+    private final Header header;
+    private final MainMenuView mainMenu;
+    private final AVItemInputDialogue avInput;
+    private final BookInputDialogue bookInput;
+    private final JournalInputDialogue journalInput;
+    private SummaryDataView itemIDInput;
+    private final AVItemView avItemView;
+    private final BookView bookView;
+    private final JournalView journalView;
 
     //Create library array list for all items
-    private ArrayList<BorrowableItem> itemList;
+    private final ArrayList<BorrowableItem> itemList;
 
     //Create object variables
     public LibraryApplication() {
@@ -362,11 +364,8 @@ public class LibraryApplication {
         int JournalID;
         JournalView.displayAllJournals(itemList);
         JournalID = journalInput.inputJournalID();
-
-        for(BorrowableItem s : itemList)
-        {
-            if(Objects.equals(JournalID, s.getID()))
-            {
+        for(BorrowableItem s : itemList) {
+            if(Objects.equals(JournalID, s.getID())) {
                 JournalToEdit = s;
             }
         }
@@ -404,7 +403,16 @@ public class LibraryApplication {
 
     //User tool to search for an item on ID
     public void findItem() {
-        displayItem(itemList);
+        BorrowableItem ItemToView = null;
+        int ItemID;
+        SummaryDataView.viewAllItems(itemList);
+        ItemID = inputItemID();
+        for (BorrowableItem s : itemList) {
+            if (Objects.equals(ItemID, s.getID())) {
+                ItemToView = s;
+            }
+        }
+        SummaryDataView.displayItem(ItemToView);
     }
 
     //User specific tools, allows users to perform actions based on the current session
@@ -419,4 +427,4 @@ public class LibraryApplication {
     }
 }
 //Current noted testing issues
-//Program does will not output multiple entries if they exist in different object types
+//Program does will not output multiple entries if multiple
